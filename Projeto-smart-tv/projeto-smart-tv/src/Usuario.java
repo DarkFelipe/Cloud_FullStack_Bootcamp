@@ -1,30 +1,11 @@
-import java.io.Console;
-
 public class Usuario {
-    public static void main(String[] args) throws Exception {
-        
-        SmartTv smartTV = new SmartTv();
+   
+    public static voide main(String [] args) throws Exception {
 
-        System.out.println("Tv ligada? " +smartTV.ligada);
-        System.out.println("Canal atual: " +smartTV.canal);
-        System.out.println("Volume atual: "+smartTV.volume);
+        SmartTV smartTV = new SmartTV();
 
-        smartTV.ligar();
-        System.out.println("Novo status -> Tv ligada? " +smartTV.ligada);
-
-        smartTV.desligar();
-        System.out.println("Novo status -> Tv ligada? " +smartTV.ligada);
-
-        smartTV.diminuirVolume();
-        smartTV.diminuirVolume();
-        smartTV.diminuirVolume();
-        smartTV.aumentarVolume();
-
-        System.out.println("Volume atual: " +smartTV.volume);
-
-        System.out.println("Canal atual: " +smartTV.canal);
-
-        smartTV.mudarCanal(13);
-        System.out.println("Canal atual: " +smartTV.canal);
+        System.out.println(smartTV.ligada);
+        System.out.println(smartTV.canal);
+        System.out.println(smartTV.volume);
     }
 }
