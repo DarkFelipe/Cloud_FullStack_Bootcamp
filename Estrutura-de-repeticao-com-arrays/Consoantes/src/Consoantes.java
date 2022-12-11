@@ -22,19 +22,19 @@ public class Consoantes {
                 letra.equalsIgnoreCase( "o") |
                 letra.equalsIgnoreCase("u"))) {
                 
-                consoantes[count] = letra;
-                quantidadeConsoantes++;
+                consoantes[count] = letra; // armazena as letras em consoantes
+                quantidadeConsoantes++; // repete o laço 
 
             }
 
-            count++;
+            count++; // repete para todas as letras inseridas
             
 
-        } while(count < consoantes.length);
+        } while(count < consoantes.length); // verificação da condição no final
 
         System.out.println("Consoantes: ");
 
-        for(String consoante : consoantes) {
+        for(String consoante : consoantes) { // armazeno o Array Consoantes em um novo array 
             if (consoante != null){
                 System.out.print(consoante + " ");
             }
