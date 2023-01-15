@@ -1,21 +1,40 @@
 package Dominio;
 
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class Dev {
     
     private String nome;
-    private Set<Conteudo> conteudosIncritos = new LinkedHashSet<>(); // LinkedHashSet serve para colocar na ordem que foi inserido.
+    private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>(); // LinkedHashSet serve para colocar na ordem que foi inserido.
     private Set<Conteudo> conteudosConluidos = new LinkedHashSet<>(); // Não utilizo arraylist, para não permitir a repetição de inscrição e concl
 
     // nos dois exemplos acima, utilizei herança de conteudo e o polimorfismo de Set. 
 
-    public void inscreverBootcamp(Bootcamp bootcamp){}
+    public void inscreverBootcamp(Bootcamp bootcamp){
+        this.conteudosInscritos.addAll(bootcamp.getConteudos()); // add todos os conteúdos do bootcamp para o inscrito
+        // addAll = pego tudo de conteudo e add em conteudosIncritos
+        bootcamp.getDevsIncristos().add(this); // adicionar o inscrito no argumento bootcamp
+    }
 
-    public void progredir() {}
+    public void progredir() {
+       Optional<Conteudo> conteudo =  this.conteudosInscritos.stream().findFirst();
 
-    public void calcularTotalXP() {}
+       //Optional serve para resolver os retornos nulos.
+
+        if(conteudo.isPresent()){
+            this.conteudosConluidos.add(conteudo.get());
+            this.conteudosInscritos.remove(conteudo.get());
+        } else {
+            System.err.println();
+        } 
+       
+    }
+
+    public double calcularTotalXP() {
+        return this.conteudosConluidos.stream().mapToDouble(conteudo -> conteudo.calcularXP()).sum();
+    }
 
     public String getNome() {
         return nome;
@@ -26,11 +45,11 @@ public class Dev {
     }
 
     public Set<Conteudo> getConteudosIncritos() {
-        return conteudosIncritos;
+        return conteudosInscritos;
     }
 
-    public void setConteudosIncritos(Set<Conteudo> conteudosIncritos) {
-        this.conteudosIncritos = conteudosIncritos;
+    public void setConteudosIncritos(Set<Conteudo> conteudosInscritos) {
+        this.conteudosInscritos = conteudosInscritos;
     }
 
     public Set<Conteudo> getConteudosConluidos() {
@@ -46,7 +65,7 @@ public class Dev {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-        result = prime * result + ((conteudosIncritos == null) ? 0 : conteudosIncritos.hashCode());
+        result = prime * result + ((conteudosInscritos == null) ? 0 : conteudosInscritos.hashCode());
         result = prime * result + ((conteudosConluidos == null) ? 0 : conteudosConluidos.hashCode());
         return result;
     }
@@ -65,10 +84,10 @@ public class Dev {
                 return false;
         } else if (!nome.equals(other.nome))
             return false;
-        if (conteudosIncritos == null) {
-            if (other.conteudosIncritos != null)
+        if (conteudosInscritos == null) {
+            if (other.conteudosInscritos != null)
                 return false;
-        } else if (!conteudosIncritos.equals(other.conteudosIncritos))
+        } else if (!conteudosInscritos.equals(other.conteudosInscritos))
             return false;
         if (conteudosConluidos == null) {
             if (other.conteudosConluidos != null)
