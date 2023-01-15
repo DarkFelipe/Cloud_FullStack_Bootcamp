@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 
+import Dominio.Conteudo;
 import Dominio.Curso;
 import Dominio.Mentoria;
 
@@ -15,6 +16,9 @@ public class Main {
         curso1.setDescricao("descrição curso javaScript");
         curso1.setCargaHoraria(4);
 
+        Conteudo conteudo = new Curso(); /* exemplo de polimorfismo. Instaciei um curso através da classe conteudo. 
+        Tudo que tem em conteudo, tem em curso, mas não ao contrário.*/ 
+       
         Mentoria mentoria1 = new Mentoria();
         mentoria1.setTitulo("mentoria de java");
         mentoria1.setDescricao("descrição mentoria Java");

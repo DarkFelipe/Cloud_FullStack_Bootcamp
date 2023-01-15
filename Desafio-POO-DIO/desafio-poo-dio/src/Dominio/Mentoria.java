@@ -11,31 +11,26 @@ import java.time.LocalDate;
  * Public - Tudo tem acesso
  */
 
-public class Mentoria {
+public class Mentoria extends Conteudo{  // extends - significa que é uma extensão da classe mãe Conteudo. 
 
     //atributos da classe
 
-    private String titulo; //Colocando os atributos privados, eu só posso acessá-los através de um método. Neste caso, são os get e set. 
-    private String descricao;
+   //Colocando os atributos privados, eu só posso acessá-los através de um método. Neste caso, são os get e set. 
+    
     private LocalDate data; //LocalDate e LocalDateTime são classes importantes para trabalhar com data.  
    
     
     
+    @Override
+    public double calcularXP() {
+        // TODO Auto-generated method stub
+        return XP_PADRAO + 20d; // adicionando 20 
+    }
+
     public Mentoria() {
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-    public String getDescricao() {
-        return descricao;
-    }
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+        
     public LocalDate getData() {
         return data;
     }
@@ -44,7 +39,7 @@ public class Mentoria {
     }
     @Override
     public String toString() {
-        return "Mentoria [titulo=" + titulo + ", descricao=" + descricao + ", data=" + data + "]";
+        return "Mentoria [titulo=" + getTitulo() + ", descricao=" + getDescricao() + ", data=" + data + "]";
     }
     
     
